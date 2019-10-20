@@ -3,6 +3,8 @@ require 'pry'
 
 class Scraper
 
+scraper_students = [ ]
+
   def self.scrape_index_page(index_url)
     
   end
