@@ -1,6 +1,9 @@
 require 'open-uri'
 require 'pry'
 
+require 'open-uri'
+require 'pry'
+
 class Scraper
 
   def self.scrape_index_page(index_url)
@@ -18,7 +21,8 @@ class Scraper
     students
   end
 
-   profile_page = Nokogiri::HTML(open(profile_url))
+  def self.scrape_profile_page(profile_url)
+    profile_page = Nokogiri::HTML(open(profile_url))
     students = {}
     social = profile_page.css('div.social-icon-container').children.css('a').map{ |icon| icon.attribute('href').value}
     social.each do |link|
@@ -32,5 +36,15 @@ class Scraper
         students[:blog] = link
       end
     end
-end
 
+    profile_page.css('.vitals-text-container').each do |quote|
+      students[:profile_quote] = quote.css('.profile-quote').text
+    end
+
+    profile_page.css('.bio-content').each do |bio|
+      students[:bio] = bio.css('.description-holder p').text
+    end
+    students.reject{|k,v| v.nil?}
+  end
+
+end
