@@ -48,3 +48,13 @@ class Scraper
   end
 
 end
+# social = profile_page.css('div.social-icon-container')
+# icon = social.css('.social-icon-container')
+
+# links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
+#   icon.css('a').attribute('href').value
+# end
+#
+# links[:github] = if icon.css('a').attribute('href').value.include?('github.com')
+#   icon.css('a').attribute('href').value
+# end
